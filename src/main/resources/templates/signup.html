@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="base::layout(~{::section})">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Signup</title>
+</head>
+
+<body>
+
+	<section class="">
+
+
+		<div class="container">
+			<div class="row">
+
+				<div class="col-md-6 offset-md-3 justify-content-center">
+					<div class="signup-form mt-2">
+
+						<h1 class="text-center">Register Here</h1>
+						<hr>
+
+						<div th:if="${session.message}" th:classappend="${session.message.type}" class="alert" role="alert">
+							<p class="text-center" th:text="${session.message.content}"></p>
+							<th:block th:text="${#session.removeAttribute('message')}"></th:block>
+						  </div>
+
+						<form th:action="@{/register}" method="POST" th:object="${user}"> 
+							<div class="form-group">
+								<label for="name">Name</label> <input th:value="${user.name}" type="text" class="form-control" id="name"
+									name="name" aria-describedby="emailHelp" placeholder="Enter name">
+							</div>
+							<div class="form-group">
+								<label for="exampleInputEmail1">Email address</label> <input th:value="${user.email}" type="email"
+									class="form-control" id="email" name="email" aria-describedby="emailHelp"
+									placeholder="Enter email">
+							</div>
+							<div class="form-group">
+								<label for="exampleInputPassword1">Password</label> <input type="password"
+									class="form-control" id="password" name="password" placeholder="Password">
+							</div>
+
+							<div class="form-group">
+								<label for="exampleInputPassword1">Confirm Password</label> <input type="password"
+									class="form-control" id="confirmPassword" name="confirmPassword"
+									placeholder="Password">
+							</div>
+							<div class="form-group">
+								<textarea th:value="${user.about}" class="form-control" placeholder="Enter About yourself" name="about"
+									id="about" rows="5"></textarea>
+							</div>
+							<div class="form-group form-check">
+								<input type="checkbox" name="agreement" id="agreement" class="form-check-input">
+								<label for="agreement">Accept terms abd conditions</label>
+							</div>
+							<div class="container text-center">
+								<button type="reset" class="btn btn-warning text-white m-2">Reset</button>
+
+								<button type="submit" class="btn btn-primary m-2">Signup</button>
+
+							</div>
+
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+</body>
+
+</html>

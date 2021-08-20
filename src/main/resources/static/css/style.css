@@ -1,0 +1,27 @@
+body{
+    background: rgb(241, 232, 232);
+}
+.bg-nav{
+
+    background: rgba(5, 5, 5, 0.993);
+}
+
+.banner{
+    width: 100%;
+    height: 95vh;
+    color: antiquewhite;
+    background: linear-gradient(rgba(0,0,0,0.7),rgba(0,0,0,0.8)), url(../img/bg-img.jpg);
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.signup-form{
+    padding: 5%;
+    background: #FFFF;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+
+
