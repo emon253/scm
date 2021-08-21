@@ -12,24 +12,43 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
 
 @Entity
 @Table(name = "USER")
 public class User {
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private int id;
-    private String name;
-    @Column(unique = true)
-    private String email;
-    private String password;
-    private String role;
-    private boolean enabled;
-    private String imgUrl;
-    @Column(length = 500)
-    private String about;
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private List<Contact> contacts = new ArrayList<>();
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private int id;
+	
+	@NotBlank(message = "Name field is required")
+	@Size(min = 2, max = 120)
+	private String name;
+
+	@Column(unique = true)
+	@NotBlank(message = "Email field is required")
+	@Email
+	@Size(min = 6, max = 240, message = "Size must between 6 and 240")
+	private String email;
+
+	@NotBlank(message = "Password field is required")
+	@Size(min = 4, max = 240, message = "Size must between 4 and 240")
+	private String password;
+
+	private String role;
+	private boolean enabled;
+	private String imgUrl;
+	
+	@Column(length = 500)
+	@NotBlank(message = "About field is required")
+	@Size(min = 4, max = 500, message = "Size must between 4 and 500")
+	private String about;
+
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "user")
+	private List<Contact> contacts = new ArrayList<>();
 
 	public int getId() {
 		return id;
@@ -108,7 +127,5 @@ public class User {
 		return "User [id=" + id + ", name=" + name + ", email=" + email + ", password=" + password + ", role=" + role
 				+ ", enabled=" + enabled + ", imgUrl=" + imgUrl + ", about=" + about + ", contacts=" + contacts + "]";
 	}
-    
-    
 
 }

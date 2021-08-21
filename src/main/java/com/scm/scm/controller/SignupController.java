@@ -1,14 +1,16 @@
 package com.scm.scm.controller;
 
+
 import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
 
 import com.scm.scm.domain.User;
 import com.scm.scm.repository.UserRepository;
 import com.scm.scm.service.Message;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -27,13 +29,18 @@ public class SignupController {
     }
 
     @PostMapping("/register")
-    public String registerUser(Model model, @ModelAttribute("user") User user,
+    public String registerUser(@Valid @ModelAttribute("user") User user, BindingResult result, Model model,
             @RequestParam(value = "agreement", defaultValue = "false") boolean agreement, HttpSession session) {
         System.out.println(user);
-     
+   
         try {
             if (!agreement) {
                 throw new Exception("You have to accept terms and conditions..");
+            }
+            if (result.hasErrors()) {
+                System.out.println(result);
+                model.addAttribute(user);
+                return "signup";
             }
 
             user.setRole("USER");

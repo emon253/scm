@@ -5,6 +5,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -21,6 +22,10 @@ public class Contact {
     private String image;
     @Column(length = 1000)
     private String description;
+    
+    @ManyToOne
+    private User user;
+    
 	public int getContactId() {
 		return contactId;
 	}
