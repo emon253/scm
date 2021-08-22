@@ -1,27 +1,78 @@
-body{
+body {
     background: rgb(241, 232, 232);
 }
-.bg-nav{
 
+.bg-nav {
     background: rgba(5, 5, 5, 0.993);
 }
 
-.banner{
+.banner {
     width: 100%;
     height: 95vh;
     color: antiquewhite;
-    background: linear-gradient(rgba(0,0,0,0.7),rgba(0,0,0,0.8)), url(../img/bg-img.jpg);
+    background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.8)), url(../img/bg-img.jpg);
     background-size: cover;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-.signup-form{
+.signup-form {
     padding: 5%;
     background: #FFFF;
     font-family: 'Courier New', Courier, monospace;
 }
 
 
+/* User dash board style  */
 
+@media only screen and (max-width:600px) {
+    .side-bar {
+        margin-top: px;
+        display: none;
+        background: white;
+        width: 80% !important;
+        height: 100%;
+        padding-top: 20px;
+        position: fixed;
+    }
+    .content {
+        margin-left: 0% !important;
+    }
+    .sm-toggler {
+        position: absolute;
+        top: 0%;
+        left: 80%;
+        cursor: pointer;
+    }
+}
+
+.sm-toggler {
+    position: absolute;
+    top: 0%;
+    right: 300%;
+}
+
+.side-bar {
+    background: white;
+    width: 18%;
+    height: 100%;
+    padding-top: 45px;
+    position: fixed;
+}
+
+.side-bar a {
+    display: block;
+    width: 100%;
+    padding: 10px 25px;
+    text-decoration: none;
+    color: grey;
+}
+
+.side-bar a:hover {
+    background: #c5c5c5;
+}
+
+.content {
+    margin-left: 22%;
+}

@@ -31,12 +31,12 @@ public class SignupController {
     @PostMapping("/register")
     public String registerUser(@Valid @ModelAttribute("user") User user, BindingResult result, Model model,
             @RequestParam(value = "agreement", defaultValue = "false") boolean agreement, HttpSession session) {
-        System.out.println(user);
    
         try {
             if (!agreement) {
                 throw new Exception("You have to accept terms and conditions..");
             }
+            
             if (result.hasErrors()) {
                 System.out.println(result);
                 model.addAttribute(user);
@@ -49,6 +49,7 @@ public class SignupController {
             repository.save(user);
             session.setAttribute("message", new Message("You've Successfully registered", "alert-success"));
             return "signup";
+            
         } catch (Exception e) {
             e.printStackTrace();
             model.addAttribute("user", user);

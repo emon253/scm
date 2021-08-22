@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="General/base::layout(~{::section})">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <section>
+        <div class="card mr-5">
+            <div class="card-body">
+                <h1 class="text-center">Add Contact</h1>
+                <hr>
+                <div class="container-fluid">
+                    <div class="row">
+
+                        <div class="col-md-8 offset-md-2">
+                            <form action="#" th:object="${contact}" enctype="multipart/form-data" method="POST" th:action="@{/user/process-form}">
+                                <div class="input-group mb-2">
+                                    <div class="input-group-prepend">
+                                        <div class="input-group-text"><i class="far fa-plus"></i></div>
+                                    </div>
+                                    <input type="text" class="form-control" id="name" name="name" placeholder="Enter name">
+                                </div>
+                                <div class="input-group mb-2">
+                                    <div class="input-group-prepend">
+                                        <div class="input-group-text"><i class="far fa-user"></i></div>
+                                    </div>
+                                    <input type="text" class="form-control" id="secondName" name="secondName" placeholder="Enter nick name">
+                                </div>
+                                <div class="input-group mb-2">
+                                    <div class="input-group-prepend">
+                                        <div class="input-group-text"><i class="fas fa-phone-alt"></i></div>
+                                    </div>
+                                    <input type="text" class="form-control" id="phone" name="phone" placeholder="Enter Phone">
+                                </div>
+                                <div class="input-group mb-2">
+                                    <div class="input-group-prepend">
+                                        <div class="input-group-text"><i class="far fa-envelope"></i></div>
+                                    </div>
+                                    <input type="text" class="form-control" id="email" name="email" placeholder="Enter Email">
+                                </div>
+                                <div class="input-group mb-2">
+                                    <div class="input-group-prepend">
+                                        <div class="input-group-text"><i class="fas fa-briefcase"></i></div>
+                                    </div>
+                                    <input type="text" class="form-control" id="work" name="work" placeholder="Enter Work">
+                                </div>
+                                <div class="input-group mb-2">
+
+                                    <textarea name="description" id="description" class="form-control" rows="5" placeholder="Enter description "></textarea>
+                                </div>
+                                <div class="custom-file">
+                                 <!--    <input type="file" name="image"> -->
+                                </div>
+                                <div class="text-center">
+                                    <input type="submit" class="btn btn-primary btn-lg ml-2" value="Submit">
+                                    <input type="reset" class="btn btn-danger btn-lg ml-2" value="Reset">
+
+                                </div>
+
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+</body>
+
+</html>
