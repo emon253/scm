@@ -31,8 +31,13 @@
 					</a></li>
                 <li class="nav-item"><a class="nav-link" href="#">Contact</a></li>
 
-                <li class="nav-item"><a class="nav-link " href="#">Login</a></li>
-                <li class="nav-item"><a class="nav-link " th:href="@{/signup/}" href="#">Signup</a></li>
+                <li th:if=" ${user} " class="nav-item ">
+                    <a class="nav-link " th:href="@{dashboard}" th:text="${'['+user.name+']'} " href="#">User Name</a>
+                </li>
+
+                <li th:if=" ${user} " class="nav-item ">
+                    <a class="nav-link " th:href="@{/logout} " href="# ">Logout</a>
+                </li>
             </ul>
         </div>
     </nav>
@@ -42,14 +47,24 @@
             <span onclick="toggleSideBar()" class=" fas fa-bars m-3"></span>
 
         </div>
-        <a th:href="@{/user/dashboard}" href="#">Home</a> <a href="#">View Contacts</a> <a th:href="@{/user/add-contact}" href="#">Add
-			Contact</a><a href="#">Profile</a> <a href="#">Setting</a> <a href="#">Logout</a>
+        <div class="user-profile-pic-div">
+            <img class="user-profile-pic" th:src="@{/img/default.png}" width="120" /><br>
+            <span class="text center" th:text="${user.name}"></span>
+        </div>
+        <hr>
+        <a th:href="@{/user/dashboard}" href="#">Home</a>
+         <a th:href="@{/user/view-contact/0}" href="#">View Contacts</a>
+          <a th:href="@{/user/add-contact}" href="#">Add
+			Contact</a>
+			<a href="#">Profile</a> <a href="#">Setting</a> 
+			<a href="#">Logout</a>
         <hr />
 
     </div>
 
     <div class="content">
-        <span onclick="toggleSideBar()" class=" fas fa-bars m-3"></span>
+        <span onclick="toggleSideBar()" class=" fas fa-bars "></span>
+        <h1>test</h1>
         <div th:replace="${content}"></div>
 
     </div>

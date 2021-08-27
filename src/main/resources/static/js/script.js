@@ -6,8 +6,6 @@ const toggleSideBar = () => {
         $(".content").css("margin-left", "0%")
 
 
-
-
     } else {
         $(".side-bar").css("display", "block");
         $(".content").css("margin-left", "20%")

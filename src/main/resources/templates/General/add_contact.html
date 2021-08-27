@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="General/base::layout(~{::section})">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="General/base2::layout(~{::section})">
 
 <head>
     <meta charset="UTF-8">
@@ -11,15 +11,22 @@
 <body>
 
     <section>
-        <div class="card mr-5">
-            <div class="card-body">
+        <div class="card m-0 mysqldmr-5">
+            <div class="card-body ">
                 <h1 class="text-center">Add Contact</h1>
                 <hr>
-                <div class="container-fluid">
+
+                <div th:if="${session.message}" th:classappend="${session.message.type}" class="ml-5 alert text-center " role="alert">
+                    <p th:text="${session.message.content}"></p>
+                    <th:block th:text="${#session.removeAttribute('message')}"></th:block>
+
+                </div>
+
+                <div class="container">
                     <div class="row">
 
                         <div class="col-md-8 offset-md-2">
-                            <form action="#" th:object="${contact}" enctype="multipart/form-data" method="POST" th:action="@{/user/process-form}">
+                            <form action="#" th:object="${contact}" enctype="multipart/form-data" method="POST" th:action="@{/user/process-contact-form}">
                                 <div class="input-group mb-2">
                                     <div class="input-group-prepend">
                                         <div class="input-group-text"><i class="far fa-plus"></i></div>
@@ -55,7 +62,7 @@
                                     <textarea name="description" id="description" class="form-control" rows="5" placeholder="Enter description "></textarea>
                                 </div>
                                 <div class="custom-file">
-                                 <!--    <input type="file" name="image"> -->
+                                    <input type="file" name="profileImage">
                                 </div>
                                 <div class="text-center">
                                     <input type="submit" class="btn btn-primary btn-lg ml-2" value="Submit">

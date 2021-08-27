@@ -13,12 +13,14 @@ public class CustomUserDetails implements UserDetails {
 	private User user;
 
 	public CustomUserDetails(User user) {
+		System.out.println("This is CustomUserDetails ");
 		this.user = user;
 	}
 
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
-		var authority = new SimpleGrantedAuthority(user.getRole());
+	
+		SimpleGrantedAuthority authority = new SimpleGrantedAuthority(user.getRole());
 		return List.of(authority);
 	}
 
@@ -39,7 +41,7 @@ public class CustomUserDetails implements UserDetails {
 
 	@Override
 	public boolean isAccountNonLocked() {
-		return false;
+		return true;
 	}
 
 	@Override

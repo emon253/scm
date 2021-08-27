@@ -81,11 +81,20 @@ public class Contact {
 	public void setDescription(String description) {
 		this.description = description;
 	}
-	@Override
-	public String toString() {
-		return "Contact [contactId=" + contactId + ", name=" + name + ", secondName=" + secondName + ", work=" + work
-				+ ", email=" + email + ", phone=" + phone + ", image=" + image + ", description=" + description + "]";
+	public User getUser() {
+		return user;
 	}
+	public void setUser(User user) {
+		this.user = user;
+	}
+//	@Override
+//	public String toString() {
+//		return "Contact [contactId=" + contactId + ", name=" + name + ", secondName=" + secondName + ", work=" + work
+//				+ ", email=" + email + ", phone=" + phone + ", image=" + image + ", description=" + description
+//				+ ", user=" + user + "]";
+//	}
+//	
+	
     
     
 }
