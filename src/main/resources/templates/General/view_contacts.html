@@ -1,84 +1,78 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org"
-	th:replace="General/base2::layout(~{::section})">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="General/base2::layout(~{::section})">
 
 <head>
-<meta charset="UTF-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Document</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
 </head>
 
 <body>
 
-	<section>
-		<div class="container">
-			<div class="card">
-				<div class="card-body">
-					<table class="table">
-						<thead class="thead-dark">
-							<tr>
-								<th scope="col">#ID</th>
-								<th scope="col">Name</th>
-								<th scope="col">Nick Name</th>
-								<th scope="col">Phone</th>
-								<th scope="col">Email</th>
-								<th scope="col">work</th>
-							</tr>
-						</thead>
-						<tbody data-spy="scroll">
-							<tr th:each=" contact : ${contacts}">
+    <section>
+        <div class="container">
+            <div class="card">
+                <div class="card-body">
+                    <div th:if="${session.message}" th:classappend="${session.message.type}" class="ml-5 alert text-center " role="alert">
+                        <p th:text="${session.message.content}"></p>
+                        <th:block th:text="${#session.removeAttribute('message')}"></th:block>
 
-								<th scope="row">
-									<div class="btn-group">
-										<a type="" class=" dropdown-toggle dropdown-toggle-split"
-											data-toggle="dropdown" aria-haspopup="true"
-											aria-expanded="false"
-											th:text="'SCM2021'+${contact.contactId}" href=""></a>
-										<div class="dropdown-menu">
-											<a class="dropdown-item" href="#">View Details</a> <a
-												th:href="@{edit/contact.contactId}" class="dropdown-item"
-												href="#">Update Info</a> <a
-												th:href="@{'/user/delete/'+${contact.contactId}}"
-												class="dropdown-item" href="#">Delete</a>
-										</div>
-									</div>
-								</th>
+                    </div>
+                    <table class="table">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th scope="col">#ID</th>
+                                <th scope="col">Name</th>
+                                <th scope="col">Nick Name</th>
+                                <th scope="col">Phone</th>
+                                <th scope="col">Email</th>
+                                <th scope="col">work</th>
+                            </tr>
+                        </thead>
+                        <tbody data-spy="scroll">
+                            <tr th:each=" contact : ${contacts}">
 
-								<td><img class="profile-pic"
-									th:src="@{${'/img/' + contact.image}}" width="120" /> <span
-									th:text="${contact.name} "></span></td>
-								<td th:text="${contact.secondName} " />
-								<td th:text="${contact.phone} " />
-								<td th:text="${contact.email} " />
-								<td th:text="${contact.work} " />
+                                <th scope="row">
+                                    <div class="btn-group">
+                                        <a type="" class=" dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" th:text="'SCM2021'+${contact.contactId}" href=""></a>
+                                        <div class="dropdown-menu">
+                                            <a class="dropdown-item" th:href="@{'/user/'+${contact.contactId}+'/view-details'}" href="#">View Details</a> <a th:href="@{'/user/'+${contact.contactId}+'/update-contact'}" class="dropdown-item" href="#">Update Info</a> <a th:href="@{'/user/delete/'+${contact.contactId}}"
+                                                class="dropdown-item" href="#">Delete</a>
+                                        </div>
+                                    </div>
+                                </th>
 
-							</tr>
+                                <td><img class="profile-pic" th:src="@{${'/img/' + contact.image}}" width="120" /> <span th:text="${contact.name} "></span></td>
+                                <td th:text="${contact.secondName} " />
+                                <td th:text="${contact.phone} " />
+                                <td th:text="${contact.email} " />
+                                <td th:text="${contact.work} " />
 
-						</tbody>
+                            </tr>
 
-						<!-- Example split danger button -->
+                        </tbody>
 
-						</div>
+                        <!-- Example split danger button -->
 
-					</table>
-					<!-- Pagination -->
+                </div>
 
-					<nav aria-label="Page navigation example">
-						<ul class="pagination">
-							<li th:if="${currentPage != 0}" class="page-item"><a th:href="@{'/user/view-contact/'+${currentPage-1}}"  class="page-link" href="#">Previous</a></li>
-							<li th:classappend="${currentPage==i-1?'active':''}"
-								th:each="i : ${#numbers.sequence(1,totalPages)}"
-								class="page-item"><a
-								th:href="@{'/user/view-contact/'+${i-1}}" class="page-link "
-								href="# "> <span th:text="${i} " /></a></li>
-							<li th:if="${currentPage+1 != totalPages}" class="page-item "><a th:href="@{'/user/view-contact/'+${currentPage+1}}"  class="page-link " href="# ">Next</a></li>
-						</ul>
-					</nav>
-				</div>
-			</div>
-		</div>
-	</section>
+                </table>
+                <!-- Pagination -->
+
+                <nav aria-label="Page navigation example">
+                    <ul class="pagination">
+                        <li th:if="${currentPage != 0}" class="page-item"><a th:href="@{'/user/view-contact/'+${currentPage-1}}" class="page-link" href="#">Previous</a></li>
+                        <li th:classappend="${currentPage==i-1?'active':''}" th:each="i : ${#numbers.sequence(1,totalPages)}" class="page-item">
+                            <a th:href="@{'/user/view-contact/'+${i-1}}" class="page-link " href="# "> <span th:text="${i} " /></a>
+                        </li>
+                        <li th:if="${currentPage+1 != totalPages}" class="page-item "><a th:href="@{'/user/view-contact/'+${currentPage+1}}" class="page-link " href="# ">Next</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+        </div>
+    </section>
 </body>
 
 </html>

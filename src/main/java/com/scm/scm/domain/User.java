@@ -46,7 +46,7 @@ public class User {
 	@Size(min = 4, max = 500, message = "Size must between 4 and 500")
 	private String about;
 
-	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "user")
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "user")
 	private List<Contact> contacts = new ArrayList<>();
 
 	public int getId() {

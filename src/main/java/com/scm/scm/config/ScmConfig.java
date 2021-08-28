@@ -42,7 +42,7 @@ public class ScmConfig extends WebSecurityConfigurerAdapter {
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-		http.authorizeRequests().antMatchers("/user/**").hasRole("USER")
+		http.authorizeRequests().antMatchers("/user/**").hasRole("USER").antMatchers("/admin/**").permitAll()
 				.antMatchers("/**").permitAll().and().formLogin().loginPage("/signin")
 //				.loginProcessingUrl("/processLogin").
 				.defaultSuccessUrl("/user/dashboard").and().csrf().disable();

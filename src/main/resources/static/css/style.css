@@ -242,3 +242,23 @@ body {
     border-radius: 50%;
     background-size: cover;
 }
+
+
+/* Contact details  */
+
+.contact-details-table {
+    width: 100%;
+}
+
+.contact-details-table,
+th,
+td {
+    text-align: center;
+}
+
+
+/* th,
+td {
+    text-align: left;
+    padding: 8px;
+} */

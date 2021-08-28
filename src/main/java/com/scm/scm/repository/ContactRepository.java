@@ -1,4 +1,4 @@
-package com.scm.scm.controller;
+package com.scm.scm.repository;
 
 
 import org.springframework.data.domain.Page;
